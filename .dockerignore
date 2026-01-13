@@ -7,3 +7,4 @@
 
 # Specific to Hadolint linter
 !hadolint.yaml
+
