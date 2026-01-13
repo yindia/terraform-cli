@@ -14,14 +14,16 @@ They can be downloaded from the [official Terraform releases](https://releases.h
 
 Both AWS CLI archives and signatures files are verified against AWS public GPG key.
 
-Theses files need to be added to the [/security](https://github.com/zenika-open-source/terraform-aws-cli/tree/master/security) folder.
+The Dockerfile downloads the AWS CLI archive and signature for the build platform (x86_64 or aarch64) and verifies them with the public key stored in [/security/awscliv2.asc](https://github.com/zenika-open-source/terraform-aws-cli/tree/master/security).
 
-They can be downloaded locally using this command:
+If you want to verify artifacts locally, you can download the signature file with this command:
 
 ```shell
 # Export target aws cli version
 export AWS_CLI_VERSION=2.12.5
+export AWS_CLI_ARCH=x86_64
 
 # Download signature file
-curl -o security/awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip.sig https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip.sig
+curl -o security/awscli-exe-linux-${AWS_CLI_ARCH}-${AWS_CLI_VERSION}.zip.sig \
+  https://awscli.amazonaws.com/awscli-exe-linux-${AWS_CLI_ARCH}-${AWS_CLI_VERSION}.zip.sig
 ```

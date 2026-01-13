@@ -17,7 +17,7 @@ Supported versions are listed in the [`supported_versions.json`](https://github.
 
 The following image tag strategy is applied:
 
-* `zenika/terraform-aws-cli:latest` - build from master
+* `ghcr.io/yindia/terraform-cli:latest` - build from master
   * Included CLI versions are the latest in [`supported_versions.json`](https://github.com/Zenika/terraform-aws-cli/blob/master/supported_versions.json) file.
 * `zenika/terraform-aws-cli:release-S.T_terraform-UU.VV.WW_awscli-XX.YY.ZZ` - build from releases
   * `release-S.T` is the release tag
@@ -56,7 +56,7 @@ echo AWS_ACCESS_KEY_ID=YOUR_ACCESS_KEY
 echo AWS_SECRET_ACCESS_KEY=YOUR_SECRET_KEY
 echo AWS_DEFAULT_REGION=YOUR_DEFAULT_REGION
 
-docker container run -it --rm -e "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" -e "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" -e "AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}" -v ${PWD}:/workspace zenika/terraform-aws-cli:latest
+docker container run -it --rm -e "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" -e "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" -e "AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}" -v ${PWD}:/workspace ghcr.io/yindia/terraform-cli:latest
 ```
 
 > The `--rm` flag will completely destroy the container and its data on exit.
