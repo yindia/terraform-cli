@@ -12,9 +12,7 @@ on:
       - "!master"
     paths:
       - "Dockerfile"
-      - "supported_versions.json"
-      - "hashicorp.asc"
-      - "tests/*"
+    
       - ".dockerignore"
       - "hadolint.yaml"
       - ".github/workflows/build-test.yml"
