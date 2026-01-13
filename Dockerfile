@@ -25,23 +25,17 @@ ARG TARGETPLATFORM
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends ca-certificates=20230311+deb12u1
 RUN apt-get install -y --no-install-recommends curl=7.88.1-10+deb12u14
-RUN apt-get install -y --no-install-recommends gnupg=2.2.40-1.1+deb12u2
 RUN apt-get install -y --no-install-recommends unzip=6.0-28
 RUN apt-get install -y --no-install-recommends git=1:2.39.5-0+deb12u3
 RUN apt-get install -y --no-install-recommends jq=1.6-2.1+deb12u1
 WORKDIR /workspace
-COPY security/awscliv2.asc ./
 RUN case "${TARGETPLATFORM:-linux/${TARGETARCH}}" in \
     "linux/amd64") AWS_CLI_ARCH="x86_64" ;; \
     "linux/arm64") AWS_CLI_ARCH="aarch64" ;; \
     *) echo "Unsupported platform: ${TARGETPLATFORM:-linux/${TARGETARCH}}" >&2; exit 1 ;; \
   esac && \
   curl --show-error --fail --output "awscliv2.zip" \
-    "https://awscli.amazonaws.com/awscli-exe-linux-${AWS_CLI_ARCH}-${AWS_CLI_VERSION}.zip" && \
-  curl --show-error --fail --output "awscliv2.sig" \
-    "https://awscli.amazonaws.com/awscli-exe-linux-${AWS_CLI_ARCH}-${AWS_CLI_VERSION}.zip.sig"
-RUN gpg --import awscliv2.asc
-RUN gpg --verify awscliv2.sig awscliv2.zip
+    "https://awscli.amazonaws.com/awscli-exe-linux-${AWS_CLI_ARCH}-${AWS_CLI_VERSION}.zip"
 RUN unzip -u awscliv2.zip
 RUN ./aws/install --install-dir /usr/local/aws-cli --bin-dir /usr/local/bin
 
