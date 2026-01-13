@@ -2,9 +2,5 @@
 # (each file needed in the Dockefile needs to be included manually)
 *
 
-# Specific to Terraform installation
-!security/**
-
 # Specific to Hadolint linter
 !hadolint.yaml
-
