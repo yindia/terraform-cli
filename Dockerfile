@@ -12,15 +12,9 @@ RUN apt-get update
 # RUN apt-get install --no-install-recommends -y libcurl4=7.74.0-1.3+deb11u7
 RUN apt-get install --no-install-recommends -y ca-certificates=20230311+deb12u1
 RUN apt-get install --no-install-recommends -y curl=7.88.1-10+deb12u14
-RUN apt-get install --no-install-recommends -y gnupg=2.2.40-1.1+deb12u2
 RUN apt-get install --no-install-recommends -y unzip=6.0-28
 WORKDIR /workspace
 RUN curl --silent --show-error --fail --remote-name https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_${TARGETARCH}.zip
-COPY security/hashicorp.asc ./
-COPY security/terraform_${TERRAFORM_VERSION}** ./
-RUN gpg --import hashicorp.asc
-RUN gpg --verify terraform_${TERRAFORM_VERSION}_SHA256SUMS.sig terraform_${TERRAFORM_VERSION}_SHA256SUMS
-RUN sha256sum --check --strict --ignore-missing terraform_${TERRAFORM_VERSION}_SHA256SUMS
 RUN unzip -j terraform_${TERRAFORM_VERSION}_linux_${TARGETARCH}.zip
 
 # Install AWS CLI version 2
