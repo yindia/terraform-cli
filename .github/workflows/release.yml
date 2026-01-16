@@ -33,7 +33,7 @@ jobs:
       matrix: ${{ fromJSON(needs.load_supported_versions.outputs.matrix) }}
 
     env:
-      ORGANIZATION: "zenika"
+      ORGANIZATION: ${{ github.actor }}
       IMAGE_NAME: "terraform-aws-cli"
 
     steps:

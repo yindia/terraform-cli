@@ -54,7 +54,7 @@ jobs:
             TERRAFORM_VERSION=${{ env.TF_VERSION }}
             AWS_CLI_VERSION=${{ env.AWS_VERSION }}
           tags: |
-            ghcr.io/${{ github.repository_owner }}/terraform-aws-cli:latest
+            ghcr.io/${{ github.repository_owner }}/terraform-cli:latest
           push: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
